@@ -45,9 +45,9 @@ backend/uploads/
 # =========================================================
 
 # Wishlist data
-public/DATA/
-public/DATA/*.js
-public/DATA/*.json
+# Keep the actual wishlist data files in GitHub.
+# Uploaded images remain ignored.
+public/DATA/imgs/
 
 # Backups
 backups/
@@ -56,20 +56,3 @@ public/backups/
 # App data
 data/
 backend/data/
-
-
-# =========================================================
-# DATABASE / LOCAL STORAGE
-# =========================================================
-
-*.db
-*.sqlite
-*.sqlite3
-
-
-# =========================================================
-# CONFIG FILES THAT MAY CONTAIN PERSONAL DATA
-# =========================================================
-
-pin.json
-apps.json
