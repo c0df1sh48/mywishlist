@@ -1,0 +1,26 @@
+{
+  "name": "mywishlist",
+  "version": "2.0.0",
+  "description": "MyWishlist family wishlist server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "wishlist",
+    "family",
+    "express",
+    "socket.io"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "archiver": "7.0.1",
+    "express": "5.2.1",
+    "multer": "2.1.1",
+    "socket.io": "4.8.3",
+    "unzipper": "0.12.3"
+  }
+}

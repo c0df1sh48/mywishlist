@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>MyWishlist</title>
+
+  <link rel="stylesheet" href="assets/mainstyle.css">
+  <link rel="stylesheet" href="assets/indexstyle.css">
+  <link rel="stylesheet" href="assets/icons/icons.css">
+  <link rel="stylesheet" href="assets/additem-modal.css">
+  <link rel="stylesheet" href="assets/pfp.css">
+  <link rel="stylesheet" href="assets/editstyle.css">
+  <link rel="stylesheet" href="assets/printwishes.css">
+</head>
+<body>
+<!-- Navbar -->
+<div id="navbar">
+
+    <!-- Left -->
+    <div id="navbar-left">
+
+    <button class="add-item-btn" onclick="openEditMenu()">
+        <img src="assets/icons/add.png" alt="Add Item" class="editmenuicon">
+    </button>
+    <p style="margin-right: 10px;"></p>
+    <button class="add-item-btn" onclick="openPrintWishes()">
+        <img src="assets/icons/print.png" alt="Print Wishes" class="editmenuicon">
+    </button>
+
+</div>
+
+    <!-- Center -->
+    <div id="navbar-center">
+        <a href="index.html" id="homepage">
+            <img class="homepageimg" src="assets/images/logo.png" alt="MyWishlist">
+        </a>
+    </div>
+
+    <!-- Right -->
+    <div id="navbar-right">
+        <button id="accountbutton" onclick="acountdivactive()">
+            <img id="accountpfp" src="" alt="Profile">
+        </button>
+    </div>
+
+</div>
+<!--Profile Div-->
+<div id="accountdiv">
+  <table>
+    <tr>
+      <th colspan="99">
+        <h1 style="text-align: center; color: white; font-weight: 400; letter-spacing: 1px; margin-bottom: 40px; font-family: verdana, sans-serif;">Select a Profile</h1>
+      </th>
+    </tr>
+    <tr id="pfcontent"></tr>
+  </table>
+</div>
+<!--Buttons-->
+<div class="searchbyamountholder">
+  <div id="searchbyamountdiv">
+    <h3 style="text-align: center;">Search By Price</h3>
+   <p>
+  <button>$0 - $25</button>
+  <button>$25 - $50</button>
+  <button>$50 - $75</button>
+  <button>$75 - $100</button>
+  <button>$100 - $500</button>
+  <button>$500+</button>
+  <button>Unknown Amount</button>
+  </p>
+  </div>
+</div>
+
+<!--Items-->
+<div id="itemlist">
+  <div class="item" data-price="1" id="item-0-25">
+    <h3>$0 - $25 Items</h3>
+    <p class="empty-msg">No items in this category</p>
+    <table></table>
+  </div>
+  <div class="item" data-price="26" id="item-25-50">
+    <h3>$25 - $50 Items</h3>
+    <p class="empty-msg">No items in this category</p>
+    <table></table>
+  </div>
+  <div class="item" data-price="51" id="item-50-75">
+    <h3>$50 - $75 Items</h3>
+    <p class="empty-msg">No items in this category</p>
+    <table></table>
+  </div>
+  <div class="item" data-price="76"   id="item-75-100">
+    <h3>$75 - $100 Items</h3>
+
+    <p class="empty-msg">No items in this category</p>
+    <table></table>
+  </div>
+  <div class="item" data-price="101" id="item-100-500">
+    <h3>$100 - $500 Items</h3>
+    <p class="empty-msg">No items in this category</p>
+    <table></table>
+  </div>
+  <div class="item" data-price="501" id="item-500">
+    <h3>$500+ Items</h3>
+    <p class="empty-msg">No items in this category</p>
+    <table></table>
+  </div>
+  <div class="item" data-price="" id="item-unk">
+    <h3>Unknown Price Items</h3>
+    <p class="empty-msg">No items in this category</p>
+    <table></table>
+  </div>
+</div>
+<!-- ========================================================= -->
+<!-- PRINT WISHES MODAL -->
+<!-- ========================================================= -->
+
+<div id="print-wishes-overlay">
+
+    <div id="print-wishes-modal">
+
+        <button
+            class="print-wishes-close"
+            onclick="closePrintWishes()"
+        >
+            ×
+        </button>
+
+        <h2>Print Wishes</h2>
+
+        <p class="print-wishes-subtitle">
+            Choose what you want to print.
+        </p>
+
+
+        <!-- PEOPLE -->
+
+        <div class="print-section">
+
+            <h3>Who do you want to print?</h3>
+
+            <label class="print-option">
+                <input
+                    type="checkbox"
+                    id="print-everyone"
+                    onchange="togglePrintEveryone()"
+                >
+
+                <span>Everyone</span>
+            </label>
+
+            <div id="print-people-list"></div>
+
+        </div>
+
+
+        <!-- OPTIONS -->
+
+        <div class="print-section">
+
+            <h3>Options</h3>
+
+            <label class="print-option">
+                <input
+                    type="checkbox"
+                    id="print-prices"
+                    checked
+                >
+
+                <span>Include prices</span>
+            </label>
+
+
+            <label class="print-option">
+                <input
+                    type="checkbox"
+                    id="print-descriptions"
+                    checked
+                >
+
+                <span>Include descriptions</span>
+            </label>
+
+
+            <label class="print-option">
+                <input
+                    type="checkbox"
+                    id="print-images"
+                    checked
+                >
+
+                <span>Include images</span>
+            </label>
+
+
+            <label class="print-option">
+                <input
+                    type="checkbox"
+                    id="print-links"
+                >
+
+                <span>Include links</span>
+            </label>
+
+
+            <label class="print-option">
+                <input
+                    type="checkbox"
+                    id="print-checkboxes"
+                    checked
+                >
+
+                <span>Add checkboxes</span>
+            </label>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="print-wishes-buttons">
+
+            <button
+                class="print-cancel-btn"
+                onclick="closePrintWishes()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="print-confirm-btn"
+                onclick="printWishes()"
+            >
+                🖨️ Print Wishes
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- PRINT OUTPUT -->
+<!-- ========================================================= -->
+
+<div id="print-container"></div>
+<!--Search Script-->
+<script src="scripts/searchbyamount.js"></script>
+<!--Add Item Scripts-->
+<script src="DATA/itemdata.js"></script> 
+<script src="scripts/item.js"></script>
+<script src="scripts/indexloader.js"></script>
+<!--Profile Script-->
+<script src="DATA/persondata.js"></script>
+<script src="scripts/pfp.js"></script>
+<!-- Add Item Modal Script -->
+<script src="scripts/additem.js"></script>
+<!-- Add Person Modal Script -->
+<script src="scripts/addperson.js"></script>
+<!--edit items script--><script src="scripts/editmenu.js"></script>
+<!-- Print Wishes Script -->
+<script src="scripts/printwishes.js"></script>
+</body>
+</html>

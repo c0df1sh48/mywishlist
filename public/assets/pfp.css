@@ -1,0 +1,429 @@
+/* =========================================================
+   PROFILE SELECTOR
+   ========================================================= */
+
+#accountdiv {
+    position: fixed;
+    inset: 0;
+
+    z-index: 800;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 110px 30px 40px;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(60, 184, 255, 0.08),
+            transparent 40%
+        ),
+        rgba(5, 9, 18, 0.72);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    overflow-y: auto;
+}
+
+
+/* =========================================================
+   PROFILE TABLE
+   ========================================================= */
+
+#accountdiv table {
+    width: fit-content;
+    max-width: 100%;
+
+    margin: auto;
+
+    border-collapse: separate;
+    border-spacing: 14px;
+
+    background:
+        rgba(13, 21, 36, 0.78);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 24px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    table-layout: auto;
+}
+
+
+/* =========================================================
+   PROFILE TABLE ROWS
+   Prevent mainstyle.css from changing the background
+   when hovering over the profile selector.
+   ========================================================= */
+
+#accountdiv table tr,
+#accountdiv table tbody tr {
+    background: transparent !important;
+}
+
+#accountdiv table tr:hover,
+#accountdiv table tbody tr:hover {
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+#accountdiv th {
+    padding: 10px 10px 25px;
+
+    border: none;
+
+    background: transparent !important;
+}
+
+#accountdiv th:hover {
+    background: transparent !important;
+}
+
+
+#accountdiv th h1 {
+    margin: 0;
+
+    color: var(--midnight-text);
+
+    font-size: clamp(2rem, 4vw, 3rem);
+
+    font-family: verdana, sans-serif;
+
+    font-weight: 750;
+
+    letter-spacing: -0.035em;
+
+    text-shadow:
+        0 0 25px rgba(60, 184, 255, 0.12);
+}
+
+
+/* =========================================================
+   PROFILE CELLS
+   ========================================================= */
+
+.profile-cell {
+    width: 200px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent !important;
+
+    text-align: center;
+}
+
+.profile-cell:hover {
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   PROFILE BUTTON
+   ========================================================= */
+
+.profile-button {
+    width: 200px;
+    height: 220px;
+
+    padding: 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin: 0 auto;
+
+    color: var(--midnight-text);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20, 32, 53, 0.82),
+            rgba(8, 14, 26, 0.9)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 18px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+/* =========================================================
+   PROFILE BUTTON HOVER
+   Keep the exact same background.
+   No giant shadow and no background color change.
+   ========================================================= */
+
+.profile-button:hover {
+    transform: translateY(-3px);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20, 32, 53, 0.82),
+            rgba(8, 14, 26, 0.9)
+        );
+
+    border-color:
+        rgba(60, 184, 255, 0.3);
+
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+
+/* =========================================================
+   PROFILE BUTTON ACTIVE
+   ========================================================= */
+
+.profile-button:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+
+/* =========================================================
+   PROFILE IMAGE
+   ========================================================= */
+
+.profile-image {
+    width: 135px;
+    height: 135px;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border:
+        2px solid rgba(255, 255, 255, 0.1);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.3);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+/* =========================================================
+   PROFILE IMAGE HOVER
+   ========================================================= */
+
+.profile-button:hover .profile-image {
+    transform: scale(1.02);
+
+    border-color:
+        rgba(255, 255, 255, 0.1);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+
+/* =========================================================
+   USERNAME
+   ========================================================= */
+
+.profile-username {
+    margin: 0;
+
+    color: var(--midnight-text);
+
+    font-size: 1.05rem;
+
+    font-weight: 650;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    max-width: 100%;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   NAVBAR USERNAME
+   ========================================================= */
+
+#navbar-username {
+    margin-right: 20px;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    #accountdiv {
+        padding: 90px 12px 25px;
+
+        align-items: flex-start;
+    }
+
+
+    #accountdiv table {
+        width: fit-content;
+        max-width: 100%;
+
+        padding: 14px;
+
+        border-radius: 20px;
+
+        border-spacing: 8px;
+    }
+
+
+    #accountdiv th {
+        padding-bottom: 15px;
+    }
+
+
+    #accountdiv th h1 {
+        font-size: 1.8rem;
+    }
+
+
+    .profile-cell {
+        width: 150px;
+
+        text-align: center;
+    }
+
+
+    .profile-button {
+        width: 150px;
+        height: 175px;
+
+        margin: 0 auto;
+
+        padding: 12px;
+
+        border-radius: 15px;
+    }
+
+
+    .profile-image {
+        width: 105px;
+        height: 105px;
+    }
+
+
+    .profile-username {
+        font-size: 0.95rem;
+    }
+
+
+    #navbar-username {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    #accountdiv {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+
+    #accountdiv table {
+        width: fit-content;
+        max-width: 100%;
+
+        padding: 10px;
+
+        border-spacing: 6px;
+    }
+
+
+    .profile-cell {
+        width: 135px;
+
+        text-align: center;
+    }
+
+
+    .profile-button {
+        width: 135px;
+        height: 160px;
+
+        margin: 0 auto;
+
+        padding: 10px;
+
+        border-radius: 14px;
+    }
+
+
+    .profile-image {
+        width: 90px;
+        height: 90px;
+    }
+
+
+    .profile-username {
+        font-size: 0.88rem;
+    }
+}
+
+#accountdiv th,
+#accountdiv th h1 {
+    text-transform: none !important;
+}

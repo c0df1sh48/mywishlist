@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit MyWishlist</title>
+
+    <!-- Main MyWishlist styles -->
+    <link rel="stylesheet" href="assets/mainstyle.css">
+
+    <!-- Profile styles -->
+    <link rel="stylesheet" href="assets/pfp.css">
+
+    <!-- Edit page styles -->
+    <link rel="stylesheet" href="assets/editstyle.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<div id="navbar">
+
+    <!-- Left -->
+    <div id="navbar-left">
+
+        <button
+            class="edit-page-back"
+            onclick="goBack()"
+            aria-label="Go back"
+        >
+            ←
+        </button>
+
+    </div>
+
+
+    <!-- Center -->
+    <div id="navbar-center">
+
+        <a href="index.html" id="homepage">
+
+            <img
+                class="homepageimg"
+                src="assets/images/logo.png"
+                alt="MyWishlist"
+            >
+
+        </a>
+
+    </div>
+
+
+    <!-- Right -->
+    <div id="navbar-right">
+
+        <button
+            id="accountbutton"
+            onclick="acountdivactive()"
+            aria-label="Select Profile"
+        >
+
+            <img
+                id="accountpfp"
+                src=""
+                alt="Profile"
+            >
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     PROFILE SELECTOR
+========================================================= -->
+
+<div id="accountdiv">
+
+    <table>
+
+        <tr>
+
+            <th colspan="99">
+
+                <h1>
+                    Select a Profile
+                </h1>
+
+            </th>
+
+        </tr>
+
+        <tr id="pfcontent"></tr>
+
+    </table>
+
+</div>
+
+
+<!-- =========================================================
+     MAIN EDIT PAGE
+========================================================= -->
+
+<main
+    class="edit-page"
+    style="margin-top:100px;"
+>
+
+
+    <!-- =====================================================
+         EDIT MODE SWITCHER
+    ====================================================== -->
+
+    <div class="edit-mode-switcher">
+
+        <button
+            type="button"
+            class="edit-mode-button"
+            id="editItemsModeButton"
+            onclick="switchEditMode('items')"
+        >
+
+            <span class="edit-mode-icon">
+                🛍️
+            </span>
+
+            <span>
+                Edit Items
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="edit-mode-button"
+            id="editProfilesModeButton"
+            onclick="switchEditMode('profiles')"
+        >
+
+            <span class="edit-mode-icon">
+                👤
+            </span>
+
+            <span>
+                Edit Profiles
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <header class="edit-page-header">
+
+        <div class="edit-page-header-top">
+
+            <div>
+
+                <h1 id="editPageTitle">
+                    Edit Items
+                </h1>
+
+                <p
+                    id="editPageDescription"
+                    class="edit-page-description"
+                >
+                    Select a profile to manage their wishlist.
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         ITEM EDITOR
+    ====================================================== -->
+
+    <section
+        id="itemsEditor"
+        class="editor-section"
+    >
+
+        <!-- Profile selector -->
+
+        <div class="editor-card profile-selector-card">
+
+            <div class="editor-card-header">
+
+                <div>
+
+                    <span class="editor-label">
+                        PROFILE
+                    </span>
+
+                    <h2>
+                        Choose a person
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-select-wrapper">
+
+                <select
+                    id="itemUserSelect"
+                    class="editor-select"
+                >
+
+                    <option value="">
+                        Select a person...
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- Items -->
+
+        <div
+            id="itemListSection"
+            class="editor-card item-list-card hidden"
+        >
+
+            <div class="editor-card-header">
+
+                <div>
+
+                    <h2 id="selectedPersonName">
+                        Items
+                    </h2>
+
+                </div>
+
+
+                <div class="item-list-header-actions">
+
+    <div
+        id="itemCount"
+        class="editor-count"
+    >
+        0 items
+    </div>
+
+</div>
+
+            </div>
+
+
+            <!-- Sort -->
+
+            <div class="sort-info">
+
+                <span>
+                    Sorted by price
+                </span>
+
+                <span class="sort-arrow">
+                    ↑
+                </span>
+
+                <span>
+                    Lowest to highest
+                </span>
+
+            </div>
+
+
+            <!-- Items inserted by edit.js -->
+
+            <div
+                id="itemEditorList"
+                class="item-editor-list"
+            ></div>
+
+
+            <!-- No items -->
+
+            <div
+                id="noItemsMessage"
+                class="editor-empty hidden"
+            >
+
+                <div class="editor-empty-icon">
+                    ✨
+                </div>
+
+                <h3>
+                    No items yet
+                </h3>
+
+                <p>
+                    This profile doesn't have anything on their wishlist.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PROFILE EDITOR
+    ====================================================== -->
+
+    <section
+        id="profilesEditor"
+        class="editor-section hidden"
+    >
+
+        <div class="editor-card profile-list-card">
+
+            <div class="editor-card-header">
+
+                <div>
+
+                    <span class="editor-label">
+                        PROFILES
+                    </span>
+
+                    <h2>
+                        Choose a profile
+                    </h2>
+
+                </div>
+
+
+                <div class="profile-list-header-actions">
+
+    <div
+        id="profileCount"
+        class="editor-count"
+    >
+        0 profiles
+    </div>
+
+    <button
+        type="button"
+        class="editor-button primary"
+        onclick="openAddProfileEditor()"
+        style="margin-top: 10px;"
+    >
+        ＋ Add Profile
+    </button>
+
+</div>
+
+            </div>
+
+
+            <!-- Profiles inserted by edit.js -->
+
+            <div
+                id="profileEditorList"
+                class="profile-editor-list"
+            ></div>
+
+
+            <!-- No profiles -->
+
+            <div
+                id="noProfilesMessage"
+                class="editor-empty hidden"
+            >
+
+                <div class="editor-empty-icon">
+                    👤
+                </div>
+
+                <h3>
+                    No profiles yet
+                </h3>
+
+                <p>
+                    There aren't any profiles to edit.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ITEM FORM
+    ====================================================== -->
+
+    <section
+        id="itemFormSection"
+        class="editor-section hidden"
+    >
+
+        <div class="editor-card edit-form-card">
+
+
+            <div class="editor-card-header form-header">
+
+                <button
+                    type="button"
+                    class="editor-back-button"
+                    onclick="showItemList()"
+                >
+                    ← Back
+                </button>
+
+
+                <div class="form-title-container">
+
+                    <span class="editor-label">
+                        ITEM
+                    </span>
+
+                    <h2 id="itemFormTitle">
+                        Edit Item
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <form
+                id="itemEditForm"
+                onsubmit="return false;"
+            >
+
+
+                <!-- Person -->
+
+                <div class="form-field">
+
+                    <label for="editItemUser">
+                        Person
+                    </label>
+
+                    <select
+                        id="editItemUser"
+                        class="editor-input"
+                        required
+                    ></select>
+
+                </div>
+
+
+                <!-- Name -->
+
+                <div class="form-field">
+
+                    <label for="editItemName">
+                        Item Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editItemName"
+                        class="editor-input"
+                        placeholder="Item name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Price -->
+
+                <div class="form-field">
+
+                    <label for="editItemAmount">
+                        Price
+                    </label>
+
+
+                    <div class="price-input-row">
+
+                        <div class="price-input-wrapper">
+
+                            <span class="price-symbol">
+                                $
+                            </span>
+
+                            <input
+                                type="number"
+                                id="editItemAmount"
+                                class="editor-input price-input"
+                                placeholder="0.00"
+                                step="0.01"
+                                min="0"
+                            >
+
+                        </div>
+
+
+                        <label class="unknown-price-toggle">
+
+                            <input
+                                type="checkbox"
+                                id="editUnknownAmount"
+                            >
+
+                            <span>
+                                Unknown price
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Short description -->
+
+                <div class="form-field">
+
+                    <label for="editItemBio">
+                        Short Description
+                    </label>
+
+                    <textarea
+                        id="editItemBio"
+                        class="editor-input editor-textarea"
+                        placeholder="A short description of the item..."
+                        rows="3"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- Long description -->
+
+                <div class="form-field">
+
+                    <label for="editItemLongBio">
+                        Why you would like this item
+                        <span class="optional">
+                            Optional
+                        </span>
+                    </label>
+
+                    <textarea
+                        id="editItemLongBio"
+                        class="editor-input editor-textarea"
+                        placeholder="Tell people more about this item..."
+                        rows="5"
+                    ></textarea>
+
+                </div>
+
+
+                <!-- Images -->
+
+                <div class="form-field">
+
+                    <label>
+                        Images
+                    </label>
+
+
+                    <div
+                        id="editImagePreviewContainer"
+                        class="image-preview-container"
+                    ></div>
+
+
+                    <label
+                        for="editItemImages"
+                        class="image-upload-box"
+                    >
+
+                        <span class="image-upload-icon">
+                            +
+                        </span>
+
+                        <span class="image-upload-title">
+                            Choose images
+                        </span>
+
+                        <span class="image-upload-description">
+                            PNG, JPG, GIF, or WebP
+                        </span>
+
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="editItemImages"
+                        accept="image/*"
+                        multiple
+                        hidden
+                    >
+
+
+                    <p class="form-hint">
+    Add as many images as you want. Click 🗑️ on an image to remove it.
+</p>
+                </div>
+
+
+                <!-- Purchase link -->
+
+                <div class="form-field">
+
+                    <label for="editItemLink">
+                        Purchase Link
+                        <span class="optional">
+                            Optional
+                        </span>
+                    </label>
+
+                    <input
+                        type="url"
+                        id="editItemLink"
+                        class="editor-input"
+                        placeholder="https://..."
+                    >
+
+                </div>
+
+
+                <!-- Actions -->
+
+               <div class="form-actions">
+
+    <button
+        type="button"
+        class="editor-button secondary"
+        onclick="showItemList()"
+    >
+        Cancel
+    </button>
+
+    <button
+        type="button"
+        id="saveItemButton"
+        class="editor-button primary"
+        onclick="saveItem()"
+    >
+        Save Changes
+    </button>
+
+</div>
+
+<div class="delete-item-area">
+
+    <button
+        type="button"
+        id="deleteItemButton"
+        class="editor-button delete-button"
+        onclick="deleteItem()"
+    >
+        🗑️ Delete Item
+    </button>
+
+</div>
+
+
+                <p
+                    id="itemFormStatus"
+                    class="form-status"
+                ></p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PROFILE FORM
+    ====================================================== -->
+
+    <section
+        id="profileFormSection"
+        class="editor-section hidden"
+    >
+
+        <div class="editor-card edit-form-card">
+
+
+            <div class="editor-card-header form-header">
+
+                <button
+                    type="button"
+                    class="editor-back-button"
+                    onclick="showProfileList()"
+                >
+                    ← Back
+                </button>
+
+
+                <div class="form-title-container">
+
+                    <span class="editor-label">
+                        PROFILE
+                    </span>
+
+                    <h2 id="profileFormTitle">
+                        Edit Profile
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <form
+                id="profileEditForm"
+                onsubmit="return false;"
+            >
+
+
+                <!-- Username -->
+
+                <div class="form-field">
+
+                    <label for="editUsername">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editUsername"
+                        class="editor-input"
+                        placeholder="Profile name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Profile picture -->
+
+                <div class="form-field">
+
+                    <label>
+                        Profile Picture
+                    </label>
+
+
+                    <div class="profile-picture-editor">
+
+                        <img
+                            id="editPfpPreview"
+                            src="assets/images/defaultpfp.jpeg"
+                            alt="Profile preview"
+                        >
+
+
+                        <div class="profile-picture-actions">
+
+                            <label
+                                for="editUserPfpFile"
+                                class="editor-button secondary"
+                            >
+                                Choose Picture
+                            </label>
+
+
+                            <input
+                                type="file"
+                                id="editUserPfpFile"
+                                accept="image/*"
+                                hidden
+                            >
+
+
+                            <p class="form-hint">
+                                Leave unchanged to keep the current picture.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Actions -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="editor-button secondary"
+                        onclick="showProfileList()"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="saveProfileButton"
+                        class="editor-button primary"
+                        onclick="saveProfile()"
+                    >
+                        Save Changes
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="profileFormStatus"
+                    class="form-status"
+                ></p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     SCRIPTS
+========================================================= -->
+
+<!-- LOAD EACH SCRIPT ONLY ONCE -->
+
+<script src="DATA/itemdata.js"></script>
+<script src="DATA/persondata.js"></script>
+
+<script src="scripts/pfp.js"></script>
+<script src="scripts/edit.js"></script>
+
+
+<!-- =========================================================
+     EDIT PAGE INITIALIZATION
+========================================================= -->
+
+<script>
+
+/* =========================================================
+   DEBUG
+========================================================= */
+
+console.log("========================================");
+console.log("🔧 EDIT PAGE SCRIPT LOADED");
+console.log("========================================");
+
+
+/* =========================================================
+   URL
+========================================================= */
+
+function getEditPageInfo() {
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const user =
+        params.get("user");
+
+    const mode =
+        params.get("mode") || "items";
+
+    console.log("📍 URL:", window.location.href);
+    console.log("👤 User:", user);
+    console.log("⚙️ Mode:", mode);
+
+    return {
+        user,
+        mode
+    };
+}
+
+
+/* =========================================================
+   SWITCH EDIT MODE
+========================================================= */
+
+function switchEditMode(mode) {
+
+    console.log("🔄 Switching edit mode:", mode);
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const user =
+        params.get("user");
+
+    console.log("👤 Keeping user:", user);
+
+    const newParams =
+        new URLSearchParams();
+
+    if (user) {
+        newParams.set(
+            "user",
+            user
+        );
+    }
+
+    newParams.set(
+        "mode",
+        mode
+    );
+
+    const newURL =
+        "edit.html?" +
+        newParams.toString();
+
+    console.log("➡️ New URL:", newURL);
+
+    window.location.href = newURL;
+}
+
+
+/* =========================================================
+   INITIALIZE PAGE
+========================================================= */
+
+function initializeEditPage() {
+
+    console.log("");
+    console.log("========================================");
+    console.log("🚀 INITIALIZING EDIT PAGE");
+    console.log("========================================");
+
+
+    const {
+        user,
+        mode
+    } = getEditPageInfo();
+
+
+    console.log("👤 Current user:", user);
+    console.log("⚙️ Current mode:", mode);
+
+
+    /* -----------------------------------------------------
+       DATA
+    ----------------------------------------------------- */
+
+    console.log(
+        "📦 PERSONS:",
+        window.PERSONS
+    );
+
+    console.log(
+        "📦 WISHLIST ITEMS:",
+        window.WISHLIST_ITEMS
+    );
+
+
+    /* -----------------------------------------------------
+       ELEMENTS
+    ----------------------------------------------------- */
+
+    const itemsEditor =
+        document.getElementById("itemsEditor");
+
+    const profilesEditor =
+        document.getElementById("profilesEditor");
+
+    const itemFormSection =
+        document.getElementById("itemFormSection");
+
+    const profileFormSection =
+        document.getElementById("profileFormSection");
+
+    const title =
+        document.getElementById("editPageTitle");
+
+    const description =
+        document.getElementById("editPageDescription");
+
+
+    /* -----------------------------------------------------
+       HIDE EVERYTHING
+    ----------------------------------------------------- */
+
+    itemsEditor?.classList.add("hidden");
+    profilesEditor?.classList.add("hidden");
+    itemFormSection?.classList.add("hidden");
+    profileFormSection?.classList.add("hidden");
+
+
+    /* -----------------------------------------------------
+       ITEMS
+    ----------------------------------------------------- */
+
+    if (mode === "items") {
+
+        console.log("🛒 EDIT MODE: ITEMS");
+
+
+        title.textContent =
+            "Edit Items";
+
+        description.textContent =
+            "Select a profile to manage their wishlist.";
+
+
+        itemsEditor?.classList.remove("hidden");
+
+
+        console.log(
+            "🔎 initializeItemEditor:",
+            typeof initializeItemEditor
+        );
+
+
+        if (
+            typeof initializeItemEditor ===
+            "function"
+        ) {
+
+            initializeItemEditor(user);
+
+        } else {
+
+            console.error(
+                "❌ initializeItemEditor() not found!"
+            );
+
+        }
+
+        return;
+    }
+
+
+    /* -----------------------------------------------------
+       PROFILES
+    ----------------------------------------------------- */
+
+    if (mode === "profiles") {
+
+        console.log("👤 EDIT MODE: PROFILES");
+
+
+        title.textContent =
+            "Edit Profiles";
+
+        description.textContent =
+            "Manage the people who have wishlists.";
+
+
+        profilesEditor?.classList.remove("hidden");
+
+
+        console.log(
+            "🔎 initializeProfileEditor:",
+            typeof initializeProfileEditor
+        );
+
+
+        if (
+            typeof initializeProfileEditor ===
+            "function"
+        ) {
+
+            initializeProfileEditor(user);
+
+        } else {
+
+            console.error(
+                "❌ initializeProfileEditor() not found!"
+            );
+
+        }
+
+        return;
+    }
+
+
+    /* -----------------------------------------------------
+       INVALID MODE
+    ----------------------------------------------------- */
+
+    console.warn(
+        "⚠️ Invalid mode:",
+        mode
+    );
+
+    console.warn(
+        "Falling back to items."
+    );
+
+
+    title.textContent =
+        "Edit Items";
+
+    description.textContent =
+        "Select a profile to manage their wishlist.";
+
+    itemsEditor?.classList.remove("hidden");
+
+
+    if (
+        typeof initializeItemEditor ===
+        "function"
+    ) {
+
+        initializeItemEditor(user);
+
+    }
+
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+function goBack() {
+
+    console.log("⬅️ Back button pressed");
+
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const user =
+        params.get("user");
+
+
+    if (user) {
+
+        const destination =
+            "index.html?user=" +
+            encodeURIComponent(user);
+
+        console.log(
+            "➡️ Going to:",
+            destination
+        );
+
+        window.location.href =
+            destination;
+
+    } else {
+
+        console.log(
+            "➡️ No user found."
+        );
+
+        window.location.href =
+            "index.html";
+
+    }
+
+}
+
+
+/* =========================================================
+   DOM READY
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        console.log(
+            "📄 DOMCONTENTLOADED"
+        );
+
+        initializeEditPage();
+
+    }
+);
+
+</script>
+
+</body>
+</html>

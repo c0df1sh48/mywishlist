@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Item Details</title>
+    <link rel="stylesheet" href="assets/mainstyle.css"> <!-- main css style stylesheet -->
+    <link rel="stylesheet" href="assets/pfp.css">
+    <link rel="stylesheet" href="assets/itemstyle.css"> <!-- item css style stylesheet -->
+</head>
+<body>
+    <div id="navbar">
+
+    <!-- Left -->
+    <div id="navbar-left">
+      
+        
+    </div>
+
+    <!-- Center -->
+    <div id="navbar-center">
+        <a href="index.html" id="homepage">
+            <img class="homepageimg" src="assets/images/logo.png" alt="MyWishlist">
+        </a>
+    </div>
+
+    <!-- Right -->
+    <div id="navbar-right">
+        <button id="accountbutton" onclick="acountdivactive()">
+            <img id="accountpfp" src="" alt="Profile">
+        </button>
+    </div>
+
+</div>
+
+    <!-- Profile Div -->
+    <div id="accountdiv">
+  <table>
+    <tr>
+      <th colspan="99">
+        <h1 style="text-align: center; color: white; font-weight: 400; letter-spacing: 1px; margin-bottom: 40px;">Select a Profile</h1>
+      </th>
+    </tr>
+    <tr id="pfcontent"></tr>
+  </table>
+</div>
+
+    <div class="container">
+      <div class="left-side" style="overflow: hidden;">
+        <table>
+             <tr>
+                <td class="itemscale">
+                    <button id="back_button" class="wide-btn" onclick="returnhome()">
+                        <a>Back to Wishlist</a>
+                    </button>
+                </td>
+                <td class="item-spacer"><p style="display: none;">00</p></td>
+                <td class="item-scale-2">
+                    <button onclick="getitem()" id="back_button" class="wide-btn">
+                        <a>Get Item</a>
+                    </button>
+                </td>
+             </tr>
+             <tr><td class="item-bottom-spacer"><p style="display: none;">00</p></td></tr>
+        </table>
+        <div id="slideshow-container"></div>
+      </div>
+
+      <div class="right-side" id="item-details"></div>
+    </div>
+
+    <div id="same-price-items">
+      <div class="same-price-title">Other items for the same price:</div>
+      <div class="same-price-scroll">
+        <div class="same-price-flex"></div>
+      </div>
+    </div>
+
+    
+    <!--item scripts-->
+
+    <script src="DATA/itemdata.js"></script>
+    <script src="scripts/loaditems.js"></script>
+
+    <!-- profile scripts -->
+    <script src="DATA/persondata.js"></script>
+    <script src="scripts/pfp.js"></script>
+
+    <!--return to home script-->
+    <script src="scripts/returnhome.js"></script>
+  
+<!--edit items script--><script src="scripts/editmenu.js"></script>
+</body>
+</html>

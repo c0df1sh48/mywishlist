@@ -1,0 +1,5 @@
+node_modules
+backups
+temp
+.git
+npm-debug.log

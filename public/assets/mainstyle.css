@@ -1,0 +1,965 @@
+/* =========================================================
+   MYWISHLIST — MIDNIGHT MAIN STYLE
+   ========================================================= */
+
+:root {
+    --midnight-bg: #070b14;
+    --midnight-bg-secondary: #0b1220;
+
+    --midnight-panel: rgba(13, 21, 36, 0.72);
+    --midnight-panel-hover: rgba(20, 32, 53, 0.82);
+
+    --midnight-blue: #003d61;
+    --midnight-blue-dark: #002a61;
+    --midnight-blue-light: #005d92;
+
+    --midnight-text: #f4f8ff;
+    --midnight-text-secondary: #a8b4c7;
+    --midnight-text-muted: #68778e;
+
+    --midnight-border: rgba(255, 255, 255, 0.08);
+    --midnight-border-blue: rgba(60, 184, 255, 0.25);
+
+    --midnight-glow: rgba(60, 184, 255, 0.18);
+
+    --midnight-radius: 18px;
+    --navbar-height: 72px;
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    font-family:
+        "Segoe UI",
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
+
+    color: var(--midnight-text);
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(31, 110, 213, 0.15),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(60, 184, 255, 0.08),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            var(--midnight-bg),
+            var(--midnight-bg-secondary)
+        );
+
+    background-attachment: fixed;
+}
+
+/* =========================================================
+   BACKGROUND GLOW
+   ========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(60, 184, 255, 0.06),
+            transparent 35%
+        );
+}
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+a {
+    color: var(--midnight-blue);
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        opacity 0.2s ease,
+        text-shadow 0.2s ease;
+}
+
+a:hover {
+    color: var(--midnight-blue-light);
+
+    text-shadow:
+        0 0 12px rgba(60, 184, 255, 0.25);
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+#navbar {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+
+    width: calc(100% - 32px);
+    max-width: 1500px;
+    height: var(--navbar-height);
+
+    transform: translateX(-50%);
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+
+    padding: 8px 18px;
+
+    background: rgba(8, 14, 25, 0.78);
+
+    border: 1px solid var(--midnight-border);
+    border-radius: 20px;
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    z-index: 900;
+}
+
+#navbar-left,
+#navbar-center,
+#navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+#navbar-left {
+    justify-content: flex-start;
+}
+
+#navbar-center {
+    justify-content: center;
+}
+
+#navbar-right {
+    justify-content: flex-end;
+}
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+#homepage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4px;
+    text-decoration: none;
+}
+
+.homepageimg {
+    display: block;
+
+    width: auto;
+    max-height: 50px;
+
+    object-fit: contain;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+.homepageimg:hover {
+    transform: scale(1.04);
+
+    filter:
+        drop-shadow(
+            0 0 14px rgba(60, 184, 255, 0.3)
+        );
+}
+
+/* =========================================================
+   EDIT ITEMS BUTTON
+   ========================================================= */
+
+.add-item-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 5px 9px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--midnight-blue),
+            var(--midnight-blue-dark)
+        );
+
+    border: 1px solid rgba(60, 184, 255, 0.22);
+    border-radius: 11px;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 22px rgba(31, 110, 213, 0.2);
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.add-item-btn:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 28px rgba(31, 110, 213, 0.28),
+        0 0 18px rgba(60, 184, 255, 0.12);
+}
+
+.add-item-btn:active {
+    transform: translateY(0);
+
+    box-shadow:
+        0 8px 18px rgba(31, 110, 213, 0.2);
+}
+
+.editmenuicon {
+    display: block;
+
+    width: 40px;
+    height: auto;
+
+    object-fit: contain;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+/* =========================================================
+   PROFILE BUTTON
+   ========================================================= */
+
+#accountbutton {
+    width: 48px;
+    height: 48px;
+
+    padding: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.045);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+
+    cursor: pointer;
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.2);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#accountbutton:hover {
+    transform: translateY(-2px) scale(1.04);
+
+    background: rgba(60, 184, 255, 0.08);
+    border-color: rgba(60, 184, 255, 0.4);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25),
+        0 0 20px rgba(60, 184, 255, 0.1);
+}
+
+#accountbutton:active {
+    transform: scale(0.98);
+}
+
+#accountpfp {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+main {
+    width: 100%;
+    min-height: 100vh;
+
+    padding-top: 110px;
+}
+
+.container {
+    width: min(1400px, 92%);
+
+    margin: 0 auto;
+    padding-bottom: 60px;
+}
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+
+    color: var(--midnight-text);
+    letter-spacing: -0.025em;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+}
+
+h2 {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 750;
+}
+
+h3 {
+    font-size: 1.35rem;
+}
+
+p {
+    color: var(--midnight-text-secondary);
+    line-height: 1.6;
+}
+
+/* =========================================================
+   GLASS PANELS
+   ========================================================= */
+
+.glass,
+.card,
+.panel,
+.section {
+    background: var(--midnight-panel);
+
+    border: 1px solid var(--midnight-border);
+    border-radius: var(--midnight-radius);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.glass:hover,
+.card:hover,
+.panel:hover,
+.section:hover {
+    background: var(--midnight-panel-hover);
+    border-color: var(--midnight-border-blue);
+
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.28),
+        0 0 25px rgba(60, 184, 255, 0.035),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button,
+.btn {
+    padding: 10px 18px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--midnight-blue),
+            var(--midnight-blue-dark)
+        );
+
+    border: 1px solid rgba(60, 184, 255, 0.22);
+    border-radius: 11px;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 22px rgba(31, 110, 213, 0.2);
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button:hover,
+.btn:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 28px rgba(31, 110, 213, 0.28),
+        0 0 18px rgba(60, 184, 255, 0.12);
+}
+
+button:active,
+.btn:active {
+    transform: translateY(0);
+}
+
+/* =========================================================
+   SECONDARY BUTTON
+   ========================================================= */
+
+.btn-secondary {
+    color: var(--midnight-text);
+
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid var(--midnight-border);
+
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: var(--midnight-border-blue);
+
+    box-shadow:
+        0 0 18px rgba(60, 184, 255, 0.06);
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+input,
+select,
+textarea {
+    width: 100%;
+
+    padding: 11px 13px;
+
+    color: var(--midnight-text);
+
+    background: rgba(4, 8, 15, 0.7);
+
+    border: 1px solid var(--midnight-border);
+    border-radius: 10px;
+
+    font-family: inherit;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--midnight-text-muted);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    background: rgba(5, 10, 19, 0.9);
+    border-color: var(--midnight-blue);
+
+    box-shadow:
+        0 0 0 3px rgba(60, 184, 255, 0.08),
+        0 0 20px rgba(60, 184, 255, 0.06);
+}
+
+/* =========================================================
+   SELECT
+   ========================================================= */
+
+select option {
+    background: #0d1524;
+    color: white;
+}
+
+/* =========================================================
+   DIVIDERS
+   ========================================================= */
+
+hr {
+    height: 1px;
+    margin: 25px 0;
+
+    border: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent
+        );
+}
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+
+    color: var(--midnight-text);
+}
+
+th {
+    color: var(--midnight-text-secondary);
+
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+td,
+th {
+    padding: 12px;
+}
+
+tr {
+    transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+    background: rgba(60, 184, 255, 0.035);
+}
+
+/* =========================================================
+   ACCENT TEXT
+   ========================================================= */
+
+.accent,
+.blue {
+    color: var(--midnight-blue);
+}
+
+.muted {
+    color: var(--midnight-text-muted);
+}
+
+/* =========================================================
+   GLOW
+   ========================================================= */
+
+.aexus-glow {
+    text-shadow:
+        0 0 18px rgba(60, 184, 255, 0.3);
+}
+
+.aexus-glow-box {
+    box-shadow:
+        0 0 25px rgba(60, 184, 255, 0.1);
+}
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+    background: rgba(60, 184, 255, 0.28);
+    color: white;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #070b14;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1b2d46;
+
+    border: 2px solid #070b14;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #285078;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #1b2d46 #070b14;
+}
+
+/* =========================================================
+   MOBILE NAVBAR
+   ========================================================= */
+
+@media (max-width: 768px) {
+    #navbar {
+        top: 10px;
+
+        width: calc(100% - 20px);
+        height: 62px;
+
+        padding: 7px 12px;
+
+        border-radius: 16px;
+    }
+
+    .homepageimg {
+        max-height: 40px;
+    }
+
+    .add-item-btn {
+        width: 42px;
+        height: 42px;
+        min-height: 42px;
+
+        padding: 7px;
+        gap: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 11px;
+
+        font-size: 0;
+    }
+
+    .editmenuicon {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+    }
+
+    #accountbutton {
+        width: 42px;
+        height: 42px;
+    }
+
+    main {
+        padding-top: 90px;
+    }
+
+    .container {
+        width: 94%;
+    }
+}
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 500px) {
+    #navbar {
+        width: calc(100% - 16px);
+
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .add-item-btn {
+        width: 40px;
+        height: 40px;
+        min-height: 40px;
+
+        padding: 6px;
+
+        border-radius: 10px;
+    }
+
+    .editmenuicon {
+        width: 24px;
+        height: 24px;
+    }
+
+    #accountbutton {
+        width: 40px;
+        height: 40px;
+    }
+
+    .homepageimg {
+        max-width: 110px;
+    }
+
+    h1 {
+        font-size: 2.4rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* =========================================
+   EDIT MENU
+========================================= */
+
+.edit-menu-overlay {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    z-index: 99999;
+
+    padding: 20px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.18s ease,
+        visibility 0.18s ease;
+}
+
+.edit-menu-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.edit-menu-popup {
+    width: 100%;
+    max-width: 380px;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.35);
+
+    transform: scale(0.96) translateY(8px);
+
+    transition: transform 0.18s ease;
+}
+
+.edit-menu-overlay.visible .edit-menu-popup {
+    transform: scale(1) translateY(0);
+}
+
+
+/* Header */
+
+.edit-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 20px;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.edit-menu-header h2 {
+    margin: 0;
+
+    font-family: Verdana, sans-serif;
+
+    font-size: 19px;
+    font-weight: 400;
+
+    color: #222;
+}
+
+.edit-menu-close {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #777;
+
+    font-size: 25px;
+    line-height: 30px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.edit-menu-close:hover {
+    background: #eeeeee;
+    color: #222;
+}
+
+
+/* Body */
+
+.edit-menu-body {
+    padding: 12px;
+}
+
+
+/* Options */
+
+.edit-menu-option {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 14px;
+
+    margin-bottom: 8px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    color: #222;
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+.edit-menu-option:last-child {
+    margin-bottom: 0;
+}
+
+.edit-menu-option:hover {
+    background: #f3f3f3;
+
+    transform: translateX(2px);
+}
+
+
+/* Icons */
+
+.edit-menu-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #f1f1f1;
+
+    font-size: 20px;
+}
+
+
+/* Text */
+
+.edit-menu-option-text {
+    display: block;
+}
+
+.edit-menu-option strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-family: Verdana, sans-serif;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #222;
+}
+
+.edit-menu-option small {
+    display: block;
+
+    font-family: Verdana, sans-serif;
+
+    font-size: 11px;
+
+    color: #888;
+}

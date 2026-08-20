@@ -1,0 +1,826 @@
+/* =========================================================
+   MYWISHLIST — INDEX PAGE
+   ========================================================= */
+
+:root {
+    --midnight-bg: #050914;
+    --midnight-bg-2: #0a1020;
+
+    --midnight-card: rgba(12, 19, 35, 0.72);
+    --midnight-card-hover: rgba(18, 29, 50, 0.84);
+
+    --midnight-blue: #003d61;
+    --midnight-blue-dark: #002a61;
+    --midnight-blue-light: #005d92;
+    --midnight-blue-glow: rgba(60, 184, 255, 0.22);
+
+    --text-main: #f4f8ff;
+    --text-secondary: #a9b6c9;
+    --text-muted: #6f7e94;
+
+    --border: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(60, 184, 255, 0.3);
+
+    --radius: 18px;
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+body {
+    min-height: 100vh;
+
+    color: var(--text-main);
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(31, 110, 213, 0.14),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(60, 184, 255, 0.07),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            var(--midnight-bg),
+            var(--midnight-bg-2)
+        );
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.container {
+    width: min(1400px, 92%);
+
+    margin: 0 auto;
+
+    padding: 150px 0 60px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--text-main);
+}
+
+h1 {
+    margin: 0;
+
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 800;
+
+    letter-spacing: -0.045em;
+
+    text-shadow:
+        0 0 35px rgba(60, 184, 255, 0.12);
+}
+
+p {
+    color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+a {
+    color: var(--midnight-blue-light);
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        text-shadow 0.2s ease;
+}
+
+a:hover {
+    color: #82d5ff;
+
+    text-shadow:
+        0 0 12px var(--midnight-blue-glow);
+}
+
+
+/* =========================================================
+   GLASS SECTIONS
+   ========================================================= */
+
+.section,
+.card,
+.panel {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17, 27, 47, 0.76),
+            rgba(7, 12, 24, 0.72)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.section:hover,
+.card:hover,
+.panel:hover {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(21, 34, 57, 0.84),
+            rgba(9, 16, 30, 0.8)
+        );
+
+    border-color: var(--border-hover);
+
+    box-shadow:
+        0 25px 65px rgba(0, 0, 0, 0.32),
+        0 0 28px rgba(60, 184, 255, 0.045);
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button,
+.btn {
+    font-family: inherit;
+
+    border: 1px solid rgba(60, 184, 255, 0.28);
+
+    border-radius: 11px;
+
+    padding: 10px 18px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--midnight-blue),
+            var(--midnight-blue-dark)
+        );
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 22px rgba(31, 110, 213, 0.2);
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button:hover,
+.btn:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.08);
+
+    box-shadow:
+        0 12px 30px rgba(31, 110, 213, 0.3),
+        0 0 20px rgba(60, 184, 255, 0.12);
+}
+
+button:active,
+.btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+input,
+select,
+textarea {
+    width: 100%;
+
+    padding: 10px 12px;
+
+    color: var(--text-main);
+
+    background: rgba(4, 8, 17, 0.78);
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-muted);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    background: rgba(7, 13, 25, 0.92);
+
+    border-color: var(--midnight-blue-light);
+
+    box-shadow:
+        0 0 0 3px rgba(60, 184, 255, 0.1),
+        0 0 20px rgba(60, 184, 255, 0.08);
+}
+
+
+/* =========================================================
+   SEARCH BY PRICE
+   ========================================================= */
+
+.searchbyamountholder {
+    width: min(1100px, 92%);
+
+    margin: 0 auto;
+
+    padding-top: 115px;
+    padding-bottom: 25px;
+}
+
+#searchbyamountdiv {
+    width: 100%;
+
+    padding: 20px 24px 24px;
+
+    background: var(--midnight-card);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+#searchbyamountdiv h3 {
+    margin: 0 0 18px;
+
+    color: var(--text-main);
+
+    font-size: 1.15rem;
+    font-weight: 650;
+
+    text-align: center;
+}
+
+#searchbyamountdiv p {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin: 0;
+}
+
+
+/* Price filter buttons */
+
+#searchbyamountdiv button {
+    padding: 9px 15px;
+
+    color: var(--text-secondary);
+
+    background: rgba(255, 255, 255, 0.045);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    box-shadow: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#searchbyamountdiv button:hover {
+    color: white;
+
+    background: rgba(60, 184, 255, 0.08);
+
+    border-color: var(--border-hover);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(60, 184, 255, 0.05);
+}
+
+#searchbyamountdiv button:active {
+    transform: translateY(0);
+}
+
+
+/* Active filter */
+
+#searchbyamountdiv button.active {
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--midnight-blue-light),
+            var(--midnight-blue)
+        );
+
+    border-color:
+        rgba(60, 184, 255, 0.5);
+
+    box-shadow:
+        0 0 18px rgba(60, 184, 255, 0.12);
+}
+
+
+/* =========================================================
+   WISHLIST CATEGORY SECTIONS
+   ========================================================= */
+
+#itemlist {
+    width: calc(100% - 32px);
+    max-width: 1500px;
+
+    margin: 0 auto;
+
+    padding-bottom: 60px;
+}
+
+
+/* =========================================================
+   CATEGORY
+   ========================================================= */
+
+#itemlist .item {
+    width: 100%;
+
+    margin: 0 0 28px;
+    padding: 20px 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(13, 21, 36, 0.72),
+            rgba(7, 12, 24, 0.68)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 18px;
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+
+/* =========================================================
+   CATEGORY TITLE
+   ========================================================= */
+
+#itemlist .item h3 {
+    margin: 0;
+
+    padding: 0 0 13px;
+
+    color: var(--text-main);
+
+    font-size: 1.2rem;
+    font-weight: 650;
+
+    letter-spacing: -0.015em;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.09);
+}
+
+
+/* =========================================================
+   EMPTY CATEGORY
+   ========================================================= */
+
+#itemlist .empty-msg {
+    margin: 0;
+
+    padding: 20px 10px 8px;
+
+    color: var(--text-muted);
+
+    text-align: center;
+
+    font-size: 0.88rem;
+
+    font-style: italic;
+}
+
+
+/* =========================================================
+   OLD TABLE
+   ========================================================= */
+
+#itemlist .item table {
+    display: none;
+}
+
+
+/* =========================================================
+   INDIVIDUAL WISHLIST ITEM
+   ========================================================= */
+
+.wishlist-item {
+    width: 100%;
+
+    margin: 12px 0;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(17, 27, 45, 0.92),
+            rgba(8, 14, 25, 0.92)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.2);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.wishlist-item:hover {
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 34, 56, 0.98),
+            rgba(10, 18, 32, 0.98)
+        );
+
+    border-color:
+        rgba(60, 184, 255, 0.28);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.28),
+        0 0 20px rgba(60, 184, 255, 0.06);
+}
+
+
+/* =========================================================
+   ITEM LINK
+   ========================================================= */
+
+.wishlist-item .item-details-link {
+    display: block;
+
+    width: 100%;
+
+    padding: 18px 20px;
+
+    color: inherit;
+
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   ITEM NAME
+   ========================================================= */
+
+.wishlist-item .item-name {
+    margin: 0 0 6px;
+
+    color: var(--text-main);
+
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ITEM DESCRIPTION
+   ========================================================= */
+
+.wishlist-item .item-bio {
+    margin: 0 0 8px;
+
+    color: var(--text-secondary);
+
+    font-size: 0.95rem;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   ITEM PRICE
+   ========================================================= */
+
+.wishlist-item .item-price {
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+    background: rgba(60, 184, 255, 0.3);
+
+    color: white;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--midnight-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1b304d;
+
+    border: 2px solid var(--midnight-bg);
+
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #285276;
+}
+
+* {
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #1b304d
+        var(--midnight-bg);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 94%;
+
+        padding-top: 110px;
+
+        gap: 20px;
+    }
+
+
+    /* Search */
+
+    .searchbyamountholder {
+        width: calc(100% - 20px);
+
+        padding-top: 92px;
+        padding-bottom: 20px;
+    }
+
+    #searchbyamountdiv {
+        padding: 18px;
+    }
+
+    #searchbyamountdiv h3 {
+        margin-bottom: 15px;
+
+        font-size: 1.05rem;
+    }
+
+    #searchbyamountdiv p {
+        gap: 8px;
+    }
+
+    #searchbyamountdiv button {
+        padding: 8px 12px;
+
+        font-size: 0.8rem;
+    }
+
+
+    /* Wishlist */
+
+    #itemlist {
+        width: calc(100% - 20px);
+
+        padding-bottom: 40px;
+    }
+
+    #itemlist .item {
+        margin-bottom: 24px;
+    }
+
+    #itemlist .item h3 {
+        font-size: 1.05rem;
+    }
+
+    .wishlist-item {
+        margin: 10px 0;
+
+        border-radius: 14px;
+    }
+
+    .wishlist-item .item-details-link {
+        padding: 15px 16px;
+    }
+
+    .wishlist-item .item-name {
+        font-size: 1.1rem;
+    }
+
+    .wishlist-item .item-bio {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .container {
+        width: 94%;
+
+        padding-top: 100px;
+    }
+
+
+    /* Search */
+
+    .searchbyamountholder {
+        width: calc(100% - 16px);
+
+        padding-top: 84px;
+        padding-bottom: 16px;
+    }
+
+    #searchbyamountdiv {
+        padding: 16px 12px 14px;
+
+        border-radius: 16px;
+    }
+
+    #searchbyamountdiv h3 {
+        margin-bottom: 13px;
+
+        font-size: 1rem;
+    }
+
+    #searchbyamountdiv p {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 7px;
+    }
+
+    #searchbyamountdiv button {
+        width: 100%;
+
+        min-height: 38px;
+
+        padding: 8px 6px;
+
+        font-size: 0.78rem;
+
+        border-radius: 9px;
+    }
+
+    #searchbyamountdiv button:last-child {
+        grid-column: 1 / -1;
+    }
+
+
+    /* Wishlist */
+
+    #itemlist {
+        width: calc(100% - 16px);
+    }
+
+    #itemlist .item {
+        margin-bottom: 20px;
+    }
+
+    #itemlist .item h3 {
+        font-size: 0.98rem;
+    }
+
+    #itemlist .empty-msg {
+        padding: 14px 4px;
+
+        font-size: 0.8rem;
+    }
+
+    .wishlist-item {
+        margin: 9px 0;
+
+        border-radius: 13px;
+    }
+
+    .wishlist-item .item-details-link {
+        padding: 14px;
+    }
+
+    .wishlist-item .item-name {
+        font-size: 1rem;
+    }
+
+    .wishlist-item .item-bio {
+        font-size: 0.85rem;
+    }
+
+    .wishlist-item .item-price {
+        font-size: 0.82rem;
+    }
+}

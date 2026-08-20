@@ -1,0 +1,673 @@
+/* =========================================================
+   AEXUS MIDNIGHT — ITEM PAGE
+   ========================================================= */
+
+:root {
+    --aexus-bg: #020617;
+    --aexus-surface: rgba(10, 15, 30, 0.72);
+    --aexus-surface-solid: #0a0f1e;
+
+    --aexus-border: rgba(255, 255, 255, 0.08);
+    --aexus-border-hover: rgba(60, 184, 255, 0.35);
+
+    --aexus-blue: #3cb8ff;
+    --aexus-blue-dark: #1f6ed5;
+    --aexus-blue-glow: rgba(60, 184, 255, 0.2);
+
+    --aexus-text: #f8fafc;
+    --aexus-text-secondary: #cbd5e1;
+    --aexus-muted: #64748b;
+
+    --aexus-radius: 20px;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.container {
+    margin-top: 180px;
+
+    display: flex;
+
+    gap: 40px;
+
+    padding: 20px;
+
+    align-items: stretch;
+
+    min-height: 80vh;
+}
+
+
+/* =========================================================
+   SIDES
+   ========================================================= */
+
+.left-side,
+.right-side {
+
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15, 23, 42, 0.58),
+            rgba(2, 6, 23, 0.42)
+        );
+
+    border: 1px solid var(--aexus-border);
+
+    border-radius: var(--aexus-radius);
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.left-side {
+    align-items: center;
+    color: var(--aexus-text);
+}
+
+.right-side {
+    align-items: center;
+}
+
+
+/* =========================================================
+   IMAGE / SLIDESHOW
+   ========================================================= */
+
+#slideshow-container {
+
+    width: 80%;
+
+    position: relative;
+}
+
+#slideshow-container img {
+
+    width: 100%;
+
+    max-width: 280px;
+
+    height: auto;
+
+    display: block;
+
+    margin: 0 auto;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+#slideshow-container div {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   ITEM DETAILS
+   ========================================================= */
+
+#item-details {
+
+    margin-top: 0 !important;
+
+    margin-bottom: 80px !important;
+
+    color: var(--aexus-text);
+}
+
+#item-details h2 {
+
+    margin-top: 0 !important;
+
+    font-size: 50px;
+
+    line-height: 1.05;
+
+    letter-spacing: -0.03em;
+
+    color: var(--aexus-text);
+
+    text-shadow:
+        0 0 30px rgba(60, 184, 255, 0.08);
+}
+
+
+/* =========================================================
+   GENERAL TYPOGRAPHY
+   ========================================================= */
+
+h1 {
+
+    font-size: 350%;
+
+    color: var(--aexus-text);
+
+    letter-spacing: -0.04em;
+}
+
+p {
+
+    font-size: 150%;
+
+    color: var(--aexus-text-secondary);
+}
+
+#button-header {
+
+    font-size: 0.75rem;
+
+    color: var(--aexus-muted);
+}
+
+
+/* =========================================================
+   ITEM LINK
+   ========================================================= */
+
+#item-link {
+
+    display: block;
+
+    margin-top: 20px;
+
+    color: var(--aexus-blue);
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+#item-link:hover {
+
+    color: #8bd7ff;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.wide-btn {
+
+    font-weight: 700;
+
+    font-size: 1rem;
+
+    color: var(--aexus-text);
+
+    background:
+        rgba(15, 23, 42, 0.65);
+
+    border: 1px solid var(--aexus-border);
+
+    border-radius: 14px;
+
+    padding: 16px 30px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    width: 100%;
+
+    backdrop-filter: blur(10px);
+}
+
+.wide-btn:hover {
+
+    background:
+        rgba(60, 184, 255, 0.08);
+
+    border-color:
+        var(--aexus-border-hover);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25),
+        0 0 20px rgba(60, 184, 255, 0.06);
+}
+
+.wide-btn:active {
+
+    transform: translateY(0);
+}
+
+.wide-btn a {
+
+    color: var(--aexus-text);
+
+    text-decoration: none;
+
+    font-size: 1rem;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+table {
+
+    width: 80%;
+
+    border-collapse: separate;
+
+    border-spacing: 0 6px;
+
+    color: var(--aexus-text);
+}
+
+.item-scale {
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    width: 30%;
+}
+
+.item-scale-2 {
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    width: 40%;
+}
+
+
+/* =========================================================
+   SPACERS
+   ========================================================= */
+
+.item-spacer {
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    color: transparent;
+
+    width: 10%;
+
+    user-select: none;
+}
+
+.item-bottom-spacer {
+
+    color: transparent;
+
+    font-size: 2px;
+}
+
+
+/* =========================================================
+   SAME PRICE ITEMS
+   ========================================================= */
+
+#same-price-items {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15, 23, 42, 0.65),
+            rgba(2, 6, 23, 0.55)
+        );
+
+    border: 1px solid var(--aexus-border);
+
+    border-radius: 20px;
+
+    margin: 20px;
+
+    padding: 20px 0;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    white-space: nowrap;
+
+    height: auto;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    scrollbar-color:
+        var(--aexus-blue)
+        #020617;
+
+    scrollbar-width: thin;
+}
+
+#same-price-items::-webkit-scrollbar {
+
+    height: 8px;
+
+    background: transparent;
+}
+
+#same-price-items::-webkit-scrollbar-thumb {
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--aexus-blue-dark),
+            var(--aexus-blue)
+        );
+
+    border-radius: 10px;
+}
+
+#same-price-items::-webkit-scrollbar-track {
+
+    background: rgba(255, 255, 255, 0.03);
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   SAME PRICE FLEX
+   ========================================================= */
+
+.same-price-flex {
+
+    display: flex;
+
+    flex-direction: row;
+
+    gap: 18px;
+
+    padding: 0 20px;
+
+    min-width: max-content;
+}
+
+
+/* =========================================================
+   SAME PRICE CARD
+   ========================================================= */
+
+.same-price-item-link-to-page {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(15, 23, 42, 0.75);
+
+    border: 1px solid var(--aexus-border);
+
+    border-radius: 16px;
+
+    padding: 16px 24px;
+
+    min-width: 180px;
+
+    margin-bottom: 0;
+
+    font-size: 1.1rem;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.2);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.same-price-item-link-to-page:hover {
+
+    transform: translateY(-4px);
+
+    border-color:
+        var(--aexus-border-hover);
+
+    background:
+        rgba(60, 184, 255, 0.06);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 0 25px rgba(60, 184, 255, 0.06);
+}
+
+.same-price-item-link-to-page a {
+
+    color: var(--aexus-text);
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+
+    transition: color 0.2s ease;
+}
+
+.same-price-item-link-to-page a:hover {
+
+    color: var(--aexus-blue);
+}
+
+
+/* =========================================================
+   SAME PRICE TITLE
+   ========================================================= */
+
+.same-price-title {
+
+    font-size: 1.5rem;
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
+
+    margin-left: 20px;
+
+    color: var(--aexus-text);
+}
+
+
+/* =========================================================
+   SAME PRICE SCROLL
+   ========================================================= */
+
+.same-price-scroll {
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    white-space: nowrap;
+
+    padding-bottom: 8px;
+
+    scrollbar-color:
+        var(--aexus-blue)
+        #020617;
+}
+
+.same-price-scroll::-webkit-scrollbar {
+
+    height: 8px;
+}
+
+.same-price-scroll::-webkit-scrollbar-thumb {
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--aexus-blue-dark),
+            var(--aexus-blue)
+        );
+
+    border-radius: 10px;
+}
+
+.same-price-scroll::-webkit-scrollbar-track {
+
+    background: rgba(255, 255, 255, 0.03);
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   ITEM LIST
+   ========================================================= */
+
+#itemlist {
+
+    width: 90%;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .container {
+
+        flex-direction: column;
+
+        height: auto;
+
+        min-height: auto;
+
+        margin-top: 110px;
+
+        gap: 20px;
+
+        padding: 12px;
+    }
+
+    .left-side,
+    .right-side {
+
+        width: 100%;
+
+        height: auto;
+
+        padding: 22px;
+    }
+
+    #item-details {
+
+        margin-bottom: 40px !important;
+
+        text-align: center;
+    }
+
+    #item-details h2 {
+
+        font-size: 32px;
+    }
+
+    p {
+
+        font-size: 1.1rem;
+    }
+
+    .wide-btn {
+
+        font-size: 0.95rem;
+
+        padding: 12px 20px;
+    }
+
+    table {
+
+        width: 95%;
+    }
+
+    #same-price-items {
+
+        margin: 10px;
+    }
+
+    .same-price-title {
+
+        font-size: 1.2rem;
+    }
+
+    #itemlist .item table {
+
+        width: 95% !important;
+
+        margin: 0 auto !important;
+
+        display: block !important;
+    }
+
+    #itemlist .item table tr {
+
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        width: 100% !important;
+    }
+
+    #itemlist .item table td {
+
+        width: 100% !important;
+
+        display: block !important;
+
+        height: auto !important;
+
+        min-height: 80px;
+
+        box-sizing: border-box !important;
+    }
+
+    #itemlist .item table td:not(.item-cell) {
+
+        display: none !important;
+    }
+}

@@ -1,0 +1,816 @@
+/* =========================================================
+   MYWISHLIST — MODALS / EDIT MENU
+   ========================================================= */
+
+
+/* =========================================================
+   MODAL BACKDROP
+   ========================================================= */
+
+.modal {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(60, 184, 255, 0.08),
+            transparent 45%
+        ),
+        rgba(3, 6, 12, 0.78);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    animation: fadeIn 0.25s ease-out;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   MODAL CONTENT
+   ========================================================= */
+
+.modal-content {
+    position: relative;
+
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+
+    padding: 28px;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17, 27, 45, 0.96),
+            rgba(8, 14, 25, 0.96)
+        );
+
+    border: 1px solid var(--midnight-border);
+    border-radius: var(--midnight-radius);
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.65),
+        0 0 40px rgba(60, 184, 255, 0.06);
+
+    animation: slideIn 0.25s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-25px) scale(0.98);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   MODAL SCROLLBAR
+   ========================================================= */
+
+.modal-content {
+    scrollbar-width: thin;
+    scrollbar-color: #1f6ed5 transparent;
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 7px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #1f6ed5;
+    border-radius: 20px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--midnight-blue-light);
+}
+
+
+/* =========================================================
+   MODAL HEADER
+   ========================================================= */
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+
+    border-bottom: 1px solid var(--midnight-border);
+}
+
+.modal-header h2 {
+    margin: 0;
+
+    color: var(--midnight-text);
+
+    font-size: 24px;
+    font-weight: 700;
+
+    letter-spacing: -0.3px;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    color: var(--midnight-text-muted);
+
+    font-size: 24px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.close-btn:hover {
+    color: #ff7777;
+
+    background: rgba(224, 82, 82, 0.12);
+
+    border-color: rgba(224, 82, 82, 0.35);
+
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+#addItemForm {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.form-group label {
+    color: var(--midnight-text);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.required {
+    color: var(--midnight-blue-light);
+}
+
+.hint {
+    color: var(--midnight-text-muted);
+
+    font-size: 12px;
+    font-weight: normal;
+}
+
+
+/* =========================================================
+   FORM INPUTS
+   ========================================================= */
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    padding: 12px 14px;
+
+    color: var(--midnight-text);
+
+    background: rgba(4, 8, 16, 0.75);
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="email"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    background: rgba(7, 14, 25, 0.95);
+
+    border-color: var(--midnight-blue-light);
+
+    box-shadow:
+        0 0 0 3px rgba(60, 184, 255, 0.08),
+        0 0 20px rgba(60, 184, 255, 0.08);
+}
+
+.form-group input[type="text"]:disabled,
+.form-group input[type="number"]:disabled {
+    color: #5d6879;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    cursor: not-allowed;
+}
+
+.form-group textarea {
+    min-height: 70px;
+
+    resize: vertical;
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.form-group select option {
+    color: var(--midnight-text);
+
+    background: #0d1524;
+}
+
+
+/* =========================================================
+   FILE INPUT
+   ========================================================= */
+
+.form-group input[type="file"] {
+    padding: 10px;
+
+    color: var(--midnight-text-muted);
+
+    background: rgba(4, 8, 16, 0.65);
+
+    border: 1px dashed rgba(60, 184, 255, 0.35);
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input[type="file"]:hover {
+    background: rgba(60, 184, 255, 0.04);
+
+    border-color: var(--midnight-blue-light);
+
+    box-shadow:
+        0 0 20px rgba(60, 184, 255, 0.06);
+}
+
+.form-group input[type="file"]::file-selector-button {
+    padding: 7px 13px;
+    margin-right: 10px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--midnight-blue),
+            var(--midnight-blue-dark)
+        );
+
+    border: none;
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-weight: 600;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input[type="file"]::file-selector-button:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 15px rgba(60, 184, 255, 0.18);
+}
+
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 8px;
+
+    color: var(--midnight-text-muted);
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    appearance: none;
+
+    width: 17px;
+    height: 17px;
+
+    margin: 0;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+    background: var(--midnight-blue);
+
+    border-color: var(--midnight-blue-light);
+
+    box-shadow:
+        0 0 12px rgba(60, 184, 255, 0.3);
+}
+
+.checkbox-label input[type="checkbox"]:checked::after {
+    content: "✓";
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+
+    color: white;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+   ========================================================= */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 20px;
+    padding-top: 20px;
+
+    border-top: 1px solid var(--midnight-border);
+}
+
+.btn-cancel,
+.btn-submit {
+    padding: 11px 20px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* Cancel */
+
+.btn-cancel {
+    color: var(--midnight-text);
+
+    background: rgba(255, 255, 255, 0.07);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.11);
+
+    transform: translateY(-1px);
+}
+
+
+/* Submit */
+
+.btn-submit {
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--midnight-blue),
+            var(--midnight-blue-dark)
+        );
+
+    border: 1px solid rgba(60, 184, 255, 0.22);
+
+    box-shadow:
+        0 5px 18px rgba(31, 110, 213, 0.2);
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(60, 184, 255, 0.28);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   EDIT MENU OPTIONS
+   ========================================================= */
+
+.edit-menu-container .edit-menu-options,
+.edit-menu-options {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+.menu-btn {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    gap: 12px;
+
+    padding: 14px 17px;
+
+    color: var(--midnight-text);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(60, 184, 255, 0.12),
+            rgba(31, 110, 213, 0.08)
+        );
+
+    border: 1px solid var(--midnight-border);
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.menu-btn:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(60, 184, 255, 0.2),
+            rgba(31, 110, 213, 0.13)
+        );
+
+    border-color: rgba(60, 184, 255, 0.35);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25),
+        0 0 20px rgba(60, 184, 255, 0.07);
+}
+
+.menu-btn:active {
+    transform: translateY(0);
+}
+
+.menu-icon {
+    width: 24px;
+
+    font-size: 18px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   DELETE MENU BUTTON
+   ========================================================= */
+
+.menu-delete-btn {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(224, 82, 82, 0.14),
+            rgba(120, 20, 20, 0.08)
+        );
+
+    border-color: rgba(224, 82, 82, 0.2);
+}
+
+.menu-delete-btn:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(224, 82, 82, 0.22),
+            rgba(120, 20, 20, 0.13)
+        );
+
+    border-color: rgba(224, 82, 82, 0.4);
+
+    box-shadow:
+        0 8px 25px rgba(224, 82, 82, 0.12);
+}
+
+
+/* =========================================================
+   CLOSE MENU BUTTON
+   ========================================================= */
+
+.menu-close-btn {
+    background: rgba(255, 255, 255, 0.045);
+
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.menu-close-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+
+    border-color: rgba(255, 255, 255, 0.14);
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   ITEM / USER LISTS
+   ========================================================= */
+
+.items-list-container,
+.users-list-container {
+    display: flex;
+    flex-direction: column;
+
+    gap: 9px;
+
+    margin-top: 10px;
+}
+
+.list-item-card {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(17, 27, 45, 0.9),
+            rgba(8, 14, 25, 0.9)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 11px;
+
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.list-item-card:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 34, 56, 0.95),
+            rgba(10, 18, 32, 0.95)
+        );
+
+    border-color: var(--midnight-border);
+
+    transform: translateY(-1px);
+}
+
+.list-item-card h4 {
+    margin: 0;
+
+    color: var(--midnight-text);
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   ITEM EDIT / DELETE BUTTONS
+   ========================================================= */
+
+.btn-edit-item,
+.btn-delete-item {
+    padding: 7px 14px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* Edit */
+
+.btn-edit-item {
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--midnight-blue),
+            var(--midnight-blue-dark)
+        );
+
+    border: 1px solid rgba(60, 184, 255, 0.22);
+}
+
+.btn-edit-item:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 16px rgba(60, 184, 255, 0.2);
+}
+
+
+/* Delete */
+
+.btn-delete-item {
+    color: #ff7777;
+
+    background: rgba(224, 82, 82, 0.12);
+
+    border: 1px solid rgba(224, 82, 82, 0.25);
+}
+
+.btn-delete-item:hover {
+    background: rgba(224, 82, 82, 0.2);
+
+    border-color: rgba(224, 82, 82, 0.4);
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 16px rgba(224, 82, 82, 0.12);
+}
+
+
+/* =========================================================
+   Z-INDEX
+   ========================================================= */
+
+#editMenuOverlay,
+#itemsSubmenu,
+#usersSubmenu,
+#itemsListMenu,
+#usersListMenu {
+    z-index: 999;
+}
+
+#addItemModal,
+#addPersonModal {
+    z-index: 1001;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .modal-content {
+        width: 92%;
+
+        padding: 20px;
+
+        border-radius: 14px;
+    }
+
+    .modal-header h2 {
+        font-size: 20px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn-cancel,
+    .btn-submit {
+        width: 100%;
+    }
+
+    .menu-btn {
+        padding: 12px 15px;
+
+        font-size: 14px;
+    }
+
+    .list-item-card {
+        padding: 12px;
+    }
+}

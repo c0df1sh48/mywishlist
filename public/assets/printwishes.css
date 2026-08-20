@@ -1,0 +1,503 @@
+/* ============================================================
+   PRINT WISHES BUTTON
+   ============================================================ */
+
+.print-wishes-btn {
+
+    width: 44px;
+    height: 44px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+
+    margin-left: 8px;
+
+}
+
+
+.print-wishes-btn:hover {
+
+    background: rgba(255, 255, 255, 0.16);
+
+    transform: translateY(-1px);
+
+}
+
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+
+#print-wishes-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 99999;
+
+}
+
+
+#print-wishes-overlay.active {
+
+    display: flex;
+
+}
+
+
+/* ============================================================
+   MODAL BOX
+   ============================================================ */
+
+#print-wishes-modal {
+
+    position: relative;
+
+    width: min(
+        500px,
+        calc(100vw - 40px)
+    );
+
+    max-height: calc(100vh - 40px);
+
+    overflow-y: auto;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background: #1d1d1f;
+
+    color: white;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.5);
+
+}
+
+
+#print-wishes-modal h2 {
+
+    margin:
+        0
+        0
+        5px;
+
+    font-size: 28px;
+
+}
+
+
+.print-wishes-subtitle {
+
+    margin:
+        0
+        0
+        25px;
+
+    opacity: 0.65;
+
+}
+
+
+/* ============================================================
+   CLOSE BUTTON
+   ============================================================ */
+
+.print-wishes-close {
+
+    position: absolute;
+
+    right: 18px;
+
+    top: 15px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+}
+
+
+.print-wishes-close:hover {
+
+    background:
+        rgba(255, 255, 255, 0.1);
+
+}
+
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+
+.print-section {
+
+    margin-bottom: 25px;
+
+}
+
+
+.print-section h3 {
+
+    margin:
+        0
+        0
+        12px;
+
+    font-size: 16px;
+
+    opacity: 0.7;
+
+}
+
+
+/* ============================================================
+   OPTIONS
+   ============================================================ */
+
+.print-option {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px 12px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease;
+
+}
+
+
+.print-option:hover {
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+}
+
+
+.print-option input {
+
+    width: 18px;
+
+    height: 18px;
+
+    cursor: pointer;
+
+}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.print-wishes-buttons {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 30px;
+
+}
+
+
+.print-cancel-btn,
+.print-confirm-btn {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding:
+        11px
+        18px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+}
+
+
+.print-cancel-btn {
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+}
+
+
+.print-confirm-btn {
+
+    background: #ffffff;
+
+    color: #111;
+
+    font-weight: 600;
+
+}
+
+
+.print-confirm-btn:hover {
+
+    opacity: 0.85;
+
+}
+
+
+/* ============================================================
+   PRINT CONTAINER
+   ============================================================ */
+
+#print-container {
+
+    display: none;
+
+}
+
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+
+@media print {
+
+    @page {
+
+        margin: 0.65in;
+
+    }
+
+
+    body > *:not(#print-container) {
+
+        display: none !important;
+
+    }
+
+
+    #print-container {
+
+        display: block !important;
+
+        width: 100%;
+
+        color: #000;
+
+        background: #fff;
+
+        font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
+    }
+
+
+    .print-person {
+
+        page-break-after: always;
+
+        break-after: page;
+
+    }
+
+
+    .print-person:last-child {
+
+        page-break-after: auto;
+
+        break-after: auto;
+
+    }
+
+
+    .print-person-header h1 {
+
+        font-size: 28px;
+
+        margin:
+            0
+            0
+            10px;
+
+    }
+
+
+    .print-line {
+
+        height: 2px;
+
+        background: #000;
+
+        margin-bottom: 25px;
+
+    }
+
+
+    .print-wish {
+
+        padding:
+            18px
+            0;
+
+        border-bottom:
+            1px solid #ccc;
+
+        break-inside: avoid;
+
+        page-break-inside: avoid;
+
+    }
+
+
+    .print-wish-main {
+
+        display: flex;
+
+        align-items: flex-start;
+
+        gap: 12px;
+
+    }
+
+
+    .wish-checkbox {
+
+        font-size: 22px;
+
+        line-height: 1;
+
+        margin-top: 2px;
+
+    }
+
+
+    .print-wish-content {
+
+        flex: 1;
+
+    }
+
+
+    .print-wish-content h2 {
+
+        margin:
+            0
+            0
+            5px;
+
+        font-size: 20px;
+
+    }
+
+
+    .print-price {
+
+        font-size: 16px;
+
+        font-weight: bold;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .print-description {
+
+        font-size: 14px;
+
+        line-height: 1.5;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .print-link {
+
+        font-size: 11px;
+
+        color: #444;
+
+        overflow-wrap: anywhere;
+
+    }
+
+
+    .print-image-container {
+
+        width: 120px;
+
+        flex-shrink: 0;
+
+    }
+
+
+    .print-image {
+
+        width: 120px;
+
+        max-height: 120px;
+
+        object-fit: contain;
+
+    }
+
+
+    .print-empty {
+
+        font-style: italic;
+
+        color: #555;
+
+    }
+
+}
