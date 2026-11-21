@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0b">
+  <title>MyWishlist Console</title>
+  <link rel="stylesheet" href="assets/mainstyle.css">
+  <link rel="stylesheet" href="assets/indexstyle.css">
+  <link rel="stylesheet" href="assets/console.css?v=20261118-2">
+</head>
+<body class="wishlist-home console-page">
+  <aside id="app-sidebar" aria-label="Main navigation">
+    <div class="sidebar-topline">
+      <a href="index.html" class="sidebar-brand"><span class="brand-mark">W</span><span class="brand-name">MyWishlist</span></a>
+      <button class="sidebar-collapse" type="button" onclick="toggleSidebar()" aria-label="Collapse sidebar">‹</button>
+    </div>
+    <div class="sidebar-label">MENU</div>
+    <button class="sidebar-link" type="button" onclick="location.href='index.html'"><span class="nav-symbol">⌂</span><span class="sidebar-text">My wishlist</span></button>
+    <button class="sidebar-link" type="button" onclick="location.href='edit.html'"><span class="nav-symbol edit-nav-icon" aria-hidden="true">&#9998;</span><span class="sidebar-text">Edit items</span></button>
+    <button class="sidebar-link active" type="button" data-nav="console"><span class="nav-symbol">▣</span><span class="sidebar-text">Console</span></button>
+    <div class="sidebar-spacer"></div>
+  </aside>
+  <!-- Mobile bottom navigation -->
+  <nav id="mobile-nav" aria-label="Mobile navigation">
+    <button class="mobile-nav-link" type="button" onclick="window.location.href='index.html'"><span>⌂</span><small>Home</small></button>
+    <button class="mobile-nav-link" type="button" onclick="window.location.href='edit.html'"><span class="edit-nav-icon" aria-hidden="true">&#9998;</span><small>Edit</small></button>
+    <button class="mobile-nav-link active" type="button" aria-current="page"><span class="dev-console-icon" aria-hidden="true">▣</span><small>Console</small></button>
+    <button class="mobile-nav-link" type="button" onclick="window.location.href='index.html'"><span>◉</span><small>Profile</small></button>
+  </nav>
+
+
+  <main class="console-main">
+    <header class="console-header">
+      <div><span class="console-eyebrow">ADMINISTRATION</span><h1>Console</h1><p>Manage site notifications, people, and backups.</p></div>
+      <button id="console-lock" class="console-button subtle" type="button" hidden>Lock console</button>
+    </header>
+
+    <section id="console-login-card" class="console-card console-login-card">
+      <span class="console-eyebrow">SECURE ACCESS</span>
+      <h2>Administrator sign in</h2>
+      <p>Enter the administrator password to manage this site.</p>
+      <form id="console-login-form">
+        <label for="console-password">Administrator password</label>
+        <input id="console-password" type="password" autocomplete="current-password" placeholder="Enter password" required>
+        <button class="console-button primary" type="submit">Unlock console</button>
+        <p id="console-login-message" class="console-message" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <div id="console-workspace" hidden>
+      <nav class="console-tabs" aria-label="Console sections">
+        <button class="console-tab active" data-section="notifications" type="button">Site notifications</button>
+        <button class="console-tab" data-section="people" type="button">People</button>
+        <button class="console-tab" data-section="backups" type="button">Backups</button>
+      </nav>
+
+      <section class="console-section active" id="section-notifications">
+        <div class="console-section-heading"><div><h2>Site notifications</h2><p>Publish announcements that visitors can see on the wishlist.</p></div></div>
+        <div class="console-grid">
+          <form id="notification-form" class="console-card console-form">
+            <input id="notification-index" type="hidden" value="">
+            <h3 id="notification-form-title">Create notification</h3>
+            <label for="notification-type">Type</label>
+            <select id="notification-type"><option value="info">Information</option><option value="note">Note</option><option value="warning">Warning</option></select>
+            <label for="notification-title">Title</label>
+            <input id="notification-title" maxlength="100" placeholder="e.g. Site maintenance" required>
+            <label for="notification-message">Message</label>
+            <textarea id="notification-message" maxlength="1500" rows="5" placeholder="Write an announcement..." required></textarea>
+            <label class="console-check"><input id="notification-enabled" type="checkbox" checked> Visible to visitors</label>
+            <div class="console-actions"><button class="console-button subtle" id="notification-clear" type="button">Clear</button><button class="console-button primary" type="submit">Save notification</button></div>
+            <p id="notification-message-status" class="console-message" aria-live="polite"></p>
+          </form>
+          <div class="console-card"><h3>Existing notifications</h3><div id="notification-list" class="console-list"><p class="console-muted">Loading...</p></div></div>
+        </div>
+      </section>
+
+      <section class="console-section" id="section-people" hidden>
+        <div class="console-section-heading"><div><h2>People</h2><p>Add, rename, update pictures, or remove wishlist profiles.</p></div></div>
+        <div class="console-grid">
+          <form id="person-form" class="console-card console-form">
+            <input id="person-index" type="hidden" value="">
+            <h3 id="person-form-title">Add person</h3>
+            <label for="person-name">Name</label>
+            <input id="person-name" maxlength="60" placeholder="Person's name" required>
+            <label for="person-picture">Profile picture path or image URL</label>
+            <input id="person-picture" placeholder="assets/images/defaultpfp.jpeg">
+            <label for="person-picture-file">Profile picture</label>
+            <input id="person-picture-file" type="file" accept="image/*">
+            <p class="console-muted" id="person-picture-file-help">Choose an image from your computer. It will upload when you save the profile.</p>
+            <div id="person-picture-preview-wrap" class="person-picture-preview-wrap" hidden>
+              <img id="person-picture-preview" alt="Profile picture preview">
+              <button id="person-picture-remove" class="console-button subtle" type="button">Remove selected image</button>
+            </div>
+            <div class="console-actions"><button class="console-button subtle" id="person-clear" type="button">Clear</button><button class="console-button primary" type="submit">Save person</button></div>
+            <p id="person-message" class="console-message" aria-live="polite"></p>
+          </form>
+          <div class="console-card"><h3>Current people</h3><div id="people-list" class="console-list"><p class="console-muted">Loading...</p></div></div>
+        </div>
+      </section>
+
+      <section class="console-section" id="section-backups" hidden>
+        <div class="console-section-heading"><div><h2>Backups</h2><p>Create a snapshot of your wishlist data and restore it later.</p></div><button id="create-backup" class="console-button primary" type="button">＋ Create backup</button></div>
+        <div class="console-card backup-upload-card"><div><h3>Restore from a backup file</h3><p>Choose a MyWishlist backup ZIP from your computer.</p></div><form id="restore-upload-form"><input id="restore-file" type="file" accept=".zip,application/zip" required><button class="console-button subtle" type="submit">Upload &amp; restore</button></form></div>
+        <div class="console-card"><h3>Saved backups</h3><div id="backup-list" class="console-list"><p class="console-muted">Loading...</p></div></div>
+        <p id="backup-message" class="console-message" aria-live="polite"></p>
+      </section>
+    </div>
+  </main>
+
+  <script src="scripts/navigation.js"></script>
+  <script src="scripts/console.js"></script>
+</body>
+</html>

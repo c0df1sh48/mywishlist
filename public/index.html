@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>MyWishlist</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0b0b">
+
+  <link rel="stylesheet" href="assets/mainstyle.css">
+  <link rel="stylesheet" href="assets/indexstyle.css">
+  <link rel="stylesheet" href="assets/icons/icons.css">
+  <link rel="stylesheet" href="assets/additem-modal.css">
+  <link rel="stylesheet" href="assets/pfp.css">
+  <link rel="stylesheet" href="assets/editstyle.css">
+  <link rel="stylesheet" href="assets/printwishes.css">
+</head>
+<body class="wishlist-home">
+<!-- Desktop sidebar / mobile navigation -->
+<aside id="app-sidebar" aria-label="Main navigation">
+  <div class="sidebar-topline">
+    <a href="index.html" class="sidebar-brand"><span class="brand-mark">W</span><span class="brand-name">MyWishlist</span></a>
+    <button class="sidebar-collapse" type="button" onclick="toggleSidebar()" aria-label="Collapse sidebar" title="Collapse sidebar">‹</button>
+  </div>
+  <div class="sidebar-label">MENU</div>
+  <button class="sidebar-link active" type="button" data-nav="home" onclick="setActiveNav(this); window.scrollTo({top:0,behavior:'smooth'})"><span class="nav-symbol">⌂</span><span class="sidebar-text">My wishlist</span></button>
+  <button class="sidebar-link" type="button" onclick="window.location.href='edit.html'+window.location.search"><span class="nav-symbol edit-nav-icon" aria-hidden="true">&#9998;</span><span class="sidebar-text">Edit items</span></button>
+  <button class="sidebar-link" type="button" onclick="openPrintWishes()"><span class="nav-symbol">▤</span><span class="sidebar-text">Print wishlist</span></button>
+  <button class="sidebar-link filter-nav-trigger" type="button" onclick="openWishlistFilters()"><span class="nav-symbol">≡</span><span class="sidebar-text">Filter</span></button>
+  <button class="sidebar-link" type="button" onclick="window.location.href='console.html'"><span class="nav-symbol dev-console-icon" aria-hidden="true">▣</span><span class="sidebar-text">Console</span></button>
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-profile-wrap">
+    <button class="sidebar-profile" type="button" onclick="acountdivactive()" title="Switch profile">
+      <img id="sidebar-pfp" src="assets/images/defaultpfp.jpeg" alt="Current profile">
+      <span class="sidebar-profile-copy"><strong id="sidebar-profile-name">Choose profile</strong><small>Switch profile</small></span>
+      <span class="sidebar-profile-arrow">⌄</span>
+    </button>
+  </div>
+</aside>
+<nav id="mobile-nav" aria-label="Mobile navigation">
+  <button class="mobile-nav-link active" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span>⌂</span><small>Home</small></button>
+  <button class="mobile-nav-link" onclick="window.location.href='edit.html'+window.location.search"><span class="edit-nav-icon" aria-hidden="true">&#9998;</span><small>Edit</small></button>
+  <button class="mobile-nav-link" onclick="openPrintWishes()"><span>▤</span><small>Print</small></button>
+  <button class="mobile-nav-link filter-nav-trigger" type="button" onclick="openWishlistFilters()"><span>≡</span><small>Filter</small></button>
+  <button class="mobile-nav-link" onclick="window.location.href='console.html'"><span class="dev-console-icon" aria-hidden="true">&#9998;</span><small>Console</small></button>
+  <button class="mobile-nav-link" onclick="acountdivactive()"><span>◉</span><small>Profile</small></button>
+</nav>
+<!-- Navbar -->
+<div id="navbar">
+
+    <!-- Left -->
+    <div id="navbar-left">
+
+    <button class="add-item-btn" type="button" onclick="window.location.href='edit.html'+window.location.search">
+        <span class="editmenuicon" aria-hidden="true">&#9998;</span>
+        <span>Edit items</span>
+    </button>
+    <p style="margin-right: 10px;"></p>
+    <button class="add-item-btn" onclick="openPrintWishes()">
+        <img src="assets/icons/print.png" alt="Print Wishes" class="editmenuicon">
+    </button>
+
+</div>
+
+    <!-- Center -->
+    <div id="navbar-center">
+        <a href="index.html" id="homepage">
+            <img class="homepageimg" src="assets/images/logo.png" alt="MyWishlist">
+        </a>
+    </div>
+
+    <!-- Right -->
+    <div id="navbar-right">
+        <button id="accountbutton" onclick="acountdivactive()">
+            <img id="accountpfp" src="" alt="Profile">
+        </button>
+    </div>
+
+</div>
+<!--Profile Div-->
+<div id="accountdiv">
+  <table>
+    <tr>
+      <th colspan="99">
+        <h1 style="text-align: center; color: white; font-weight: 400; letter-spacing: 1px; margin-bottom: 40px; font-family: verdana, sans-serif;">Select a Profile</h1>
+      </th>
+    </tr>
+    <tr id="pfcontent"></tr>
+  </table>
+</div>
+<section id="site-notifications" class="site-notifications" aria-live="polite"></section>
+<!-- Wishlist introduction -->
+<section class="wishlist-hero">
+  <div class="hero-copy">
+    <span class="eyebrow" id="wishlist-heading">Your wishlist</span>
+  </div>
+</section>
+<!-- All wishlist items live together in one collection -->
+<section id="itemlist" aria-label="Wishlist items">
+  <div class="item" id="all-items">
+    <p class="empty-msg">No items yet. Add something to your wishlist to get started.</p>
+    <div id="wishlist-grid" class="wishlist-grid"></div>
+  </div>
+</section>
+<!-- CONTROL PANEL: public announcements, password-protected editing -->
+<div id="control-panel-overlay" class="control-overlay" aria-hidden="true">
+  <section class="control-panel" role="dialog" aria-modal="true" aria-labelledby="control-panel-title">
+      <h3>Administrator access</h3>
+      <p>Sign in to publish, edit, or remove site updates.</p>
+      <form id="control-login-form">
+        <label for="control-password">Password</label>
+        <div class="control-password-row"><input id="control-password" type="password" autocomplete="current-password" placeholder="Administrator password" required><button type="submit">Unlock</button></div>
+        <p id="control-login-message" class="control-message" aria-live="polite"></p>
+      </form>
+    <div id="control-editor" class="control-editor" hidden>
+      <div class="control-divider"></div>
+      <div class="control-editor-heading"><div><h3>Manage updates</h3><p>You are signed in as an administrator.</p></div><button type="button" class="control-lock-btn" onclick="lockControlPanel()">Lock</button></div>
+      <form id="control-update-form">
+        <input type="hidden" id="control-update-index" value="">
+        <label for="control-update-title">Title</label><input id="control-update-title" maxlength="100" required placeholder="e.g. Site maintenance">
+        <label for="control-update-message">Message</label><textarea id="control-update-message" maxlength="1500" rows="4" required placeholder="Write an update for everyone…"></textarea>
+        <div class="control-editor-actions"><button type="button" class="control-secondary" onclick="resetControlUpdateForm()">Clear</button><button type="submit">Publish update</button></div>
+        <p id="control-save-message" class="control-message" aria-live="polite"></p>
+      </form>
+      <div id="control-manage-list" class="control-manage-list"></div>
+    </div>
+  </section>
+</div>
+
+<!-- Wishlist filters popup -->
+<div id="wishlist-filter-overlay" class="wishlist-filter-overlay" aria-hidden="true" onclick="if(event.target===this) closeWishlistFilters()">
+  <section class="wishlist-filter-popup" role="dialog" aria-modal="true" aria-labelledby="wishlist-filter-title">
+    <div class="wishlist-filter-header">
+      <div><span class="filter-eyebrow">WISHLIST</span><h2 id="wishlist-filter-title">Filter & sort</h2></div>
+      <button class="wishlist-filter-close" type="button" onclick="closeWishlistFilters()" aria-label="Close filters">×</button>
+    </div>
+    <div class="wishlist-filter-content">
+      <div class="filter-field"><label for="filter-bundle">Bundle</label><select id="filter-bundle"><option value="">All bundles</option></select></div>
+      <div class="filter-field"><span class="filter-label">Tags</span><div id="filter-tag-options" class="filter-tag-options"><span class="filter-muted">No tags available</span></div></div>
+      <div class="filter-price-row">
+        <div class="filter-field"><label for="filter-price-min">Minimum price</label><input id="filter-price-min" type="number" min="0" step="0.01" inputmode="decimal" placeholder="No minimum"></div>
+        <div class="filter-field"><label for="filter-price-max">Maximum price</label><input id="filter-price-max" type="number" min="0" step="0.01" inputmode="decimal" placeholder="No maximum"></div>
+      </div>
+      <div class="filter-field"><label for="filter-sort">Sort by</label><select id="filter-sort"><option value="default">Default order</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option><option value="name-asc">Name: A to Z</option><option value="name-desc">Name: Z to A</option></select></div>
+    </div>
+    <div class="wishlist-filter-footer"><button type="button" class="filter-reset" onclick="resetWishlistFilters()">Clear filters</button><button type="button" class="filter-apply" onclick="applyWishlistFilters()">Apply filters</button></div>
+  </section>
+</div>
+
+<!-- ========================================================= -->
+<!-- PRINT WISHES MODAL -->
+<!-- ========================================================= -->
+
+<div id="print-wishes-overlay" onclick="if(event.target === this) closePrintWishes()">
+
+    <div id="print-wishes-modal">
+
+        <h2>Print Wishes</h2>
+
+        <p class="print-wishes-subtitle">
+            Choose what you want to print.
+        </p>
+
+
+        <!-- PEOPLE -->
+
+        <div class="print-section">
+
+            <h3>Who do you want to print?</h3>
+
+            <label class="print-option">
+                <input
+                    type="checkbox"
+                    id="print-everyone"
+                    onchange="togglePrintEveryone()"
+                >
+
+                <span>Everyone</span>
+            </label>
+
+            <div id="print-people-list"></div>
+
+        </div>
+
+
+        <!-- OPTIONS -->
+
+        <div class="print-section">
+
+            <h3>Options</h3>
+
+            <label class="print-option">
+                <input
+                    type="checkbox"
+                    id="print-prices"
+                    checked
+                >
+
+                <span>Include prices</span>
+            </label>
+
+
+            <label class="print-option">
+                <input
+                    type="checkbox"
+                    id="print-descriptions"
+                    checked
+                >
+
+                <span>Include descriptions</span>
+            </label>
+
+
+            <label class="print-option">
+                <input
+                    type="checkbox"
+                    id="print-images"
+                    checked
+                >
+
+                <span>Include images</span>
+            </label>
+
+
+            <label class="print-option">
+                <input
+                    type="checkbox"
+                    id="print-links"
+                >
+
+                <span>Include links</span>
+            </label>
+
+
+            <label class="print-option">
+                <input
+                    type="checkbox"
+                    id="print-checkboxes"
+                    checked
+                >
+
+                <span>Add checkboxes</span>
+            </label>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="print-wishes-buttons">
+
+            <button
+                class="print-cancel-btn"
+                onclick="closePrintWishes()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="print-confirm-btn"
+                onclick="printWishes()"
+            >
+                Print Wishes
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- PRINT OUTPUT -->
+<!-- ========================================================= -->
+
+<div id="print-container"></div>
+<!--Search Script-->
+<script src="scripts/navigation.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="scripts/controlpanel.js"></script>
+<!--Add Item Scripts-->
+<script src="DATA/itemdata.js"></script> 
+<script src="scripts/item.js"></script>
+<script src="scripts/indexloader.js"></script>
+<script src="scripts/wishlist-filters.js"></script>
+<!--Profile Script-->
+<script src="DATA/persondata.js"></script>
+<script src="scripts/pfp.js"></script>
+<!-- Add Item Modal Script -->
+<script src="scripts/additem.js"></script>
+<!-- Add Person Modal Script -->
+<script src="scripts/addperson.js"></script>
+<!--edit items script--><script src="scripts/editmenu.js"></script>
+<!-- Print Wishes Script -->
+<script src="scripts/printwishes.js"></script>
+</body>
+</html>

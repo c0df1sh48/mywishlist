@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0b0b">
+    <title>Item Details - MyWishlist</title>
+
+    <link rel="stylesheet" href="assets/mainstyle.css">
+    <link rel="stylesheet" href="assets/indexstyle.css">
+    <link rel="stylesheet" href="assets/pfp.css">
+    <link rel="stylesheet" href="assets/itemstyle.css">
+</head>
+<body class="wishlist-home item-detail-page">
+
+    <!-- Desktop sidebar -->
+    <aside id="app-sidebar" aria-label="Main navigation">
+        <div class="sidebar-topline">
+            <a href="index.html" class="sidebar-brand">
+                <span class="brand-mark">W</span>
+                <span class="brand-name">MyWishlist</span>
+            </a>
+            <button class="sidebar-collapse" type="button" onclick="toggleSidebar()"
+                aria-label="Collapse sidebar" title="Collapse sidebar">‹</button>
+        </div>
+
+        <div class="sidebar-label">MENU</div>
+
+        <button class="sidebar-link active" type="button"
+            onclick="window.location.href='index.html'+window.location.search">
+            <span class="nav-symbol">⌂</span>
+            <span class="sidebar-text">My wishlist</span>
+        </button>
+
+        <button class="sidebar-link" type="button"
+            onclick="window.location.href='edit.html'+window.location.search">
+            <span class="nav-symbol edit-nav-icon" aria-hidden="true">&#9998;</span>
+            <span class="sidebar-text">Edit items</span>
+        </button>
+
+        <button class="sidebar-link" type="button"
+            onclick="window.location.href='console.html'">
+            <span class="nav-symbol dev-console-icon" aria-hidden="true">▣</span>
+            <span class="sidebar-text">Console</span>
+        </button>
+
+        <div class="sidebar-spacer"></div>
+
+        <div class="sidebar-profile-wrap">
+            <button class="sidebar-profile" type="button" onclick="acountdivactive()"
+                title="Switch profile">
+                <img id="sidebar-pfp" src="assets/images/defaultpfp.jpeg" alt="Current profile">
+                <span class="sidebar-profile-copy">
+                    <strong id="sidebar-profile-name">Choose profile</strong>
+                    <small>Switch profile</small>
+                </span>
+                <span class="sidebar-profile-arrow">⌄</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Mobile bottom navigation -->
+    <nav id="mobile-nav" aria-label="Mobile navigation">
+        <button class="mobile-nav-link active" type="button"
+            onclick="window.location.href='index.html'+window.location.search">
+            <span>⌂</span><small>Home</small>
+        </button>
+        <button class="mobile-nav-link" type="button"
+            onclick="window.location.href='edit.html'+window.location.search">
+            <span class="edit-nav-icon" aria-hidden="true">&#9998;</span><small>Edit</small>
+        </button>
+        <button class="mobile-nav-link" type="button"
+            onclick="window.location.href='console.html'">
+            <span class="dev-console-icon" aria-hidden="true">▣</span><small>Console</small>
+        </button>
+        <button class="mobile-nav-link" type="button" onclick="acountdivactive()">
+            <span>◉</span><small>Profile</small>
+        </button>
+    </nav>
+
+    <!-- Existing profile selector used by pfp.js -->
+    <div id="accountdiv">
+        <table>
+            <tr>
+                <th colspan="99">
+                    <h1 style="text-align:center;color:white;font-weight:400;letter-spacing:1px;margin-bottom:40px;">
+                        Select a Profile
+                    </h1>
+                </th>
+            </tr>
+            <tr id="pfcontent"></tr>
+        </table>
+    </div>
+
+    <main class="item-detail-main">
+        <div class="item-detail-layout">
+            <section class="item-image-panel">
+                <div id="slideshow-container"></div>
+            </section>
+
+            <div class="item-information-column">
+                <section class="item-information-panel" id="item-details" aria-live="polite">
+                    <h1>Loading item...</h1>
+                </section>
+                <div class="item-detail-actions">
+                    <button id="get_item_button" class="item-action-button" type="button" onclick="getitem()">
+                        Get Item
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <section id="same-price-items">
+            <div class="same-price-title">Other items for the same price:</div>
+            <div class="same-price-scroll">
+                <div class="same-price-flex"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Data must load before scripts that read it -->
+    <script src="DATA/persondata.js"></script>
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/pfp.js"></script>
+
+    <script src="DATA/itemdata.js"></script>
+    <script src="scripts/loaditems.js"></script>
+    <script src="scripts/returnhome.js"></script>
+</body>
+</html>
